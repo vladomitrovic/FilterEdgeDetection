@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FilterEdgeDetection.BLL
 {
-    class IPictureManipulation
+    public interface IPictureManipulation
     {
+        void BlackWhite(Bitmap bitmap);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilterEdgeDetection.BLL
 {
-    class Edge
+   public class Edge
     {
     }
 }
