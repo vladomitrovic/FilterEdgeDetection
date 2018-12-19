@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FilterEdgeDetection.IOfile
 {
-    interface IPictureIO
+    public interface IPictureIO
     {
-        Bitmap openPicrture(string path);
+        Bitmap openPicture(string path);
 
-        void savePicture(Bitmap savedPicture, string path);
+        void savePicture(Bitmap savedPicture);
     }
 }

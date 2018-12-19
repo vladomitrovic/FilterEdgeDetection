@@ -1,4 +1,6 @@
-﻿namespace FilterEdgeDetection
+﻿using System;
+
+namespace FilterEdgeDetection
 {
     partial class WinForm
     {
@@ -32,11 +34,11 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.labelFiltre = new System.Windows.Forms.Label();
-            this.checkBox_blackwhite = new System.Windows.Forms.CheckBox();
-            this.checkBox_night = new System.Windows.Forms.CheckBox();
-            this.checkBox_kirsch = new System.Windows.Forms.CheckBox();
-            this.checkBox_prewitt = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.RB_BlackWhite = new System.Windows.Forms.RadioButton();
+            this.RB_NightFilter = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.RB_Prewitt = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +50,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(1409, 579);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnLoad
             // 
@@ -58,6 +61,7 @@
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnSave
             // 
@@ -68,6 +72,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // labelFiltre
             // 
@@ -79,50 +84,6 @@
             this.labelFiltre.TabIndex = 3;
             this.labelFiltre.Text = "Filtre : ";
             // 
-            // checkBox_blackwhite
-            // 
-            this.checkBox_blackwhite.AutoSize = true;
-            this.checkBox_blackwhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_blackwhite.Location = new System.Drawing.Point(428, 713);
-            this.checkBox_blackwhite.Name = "checkBox_blackwhite";
-            this.checkBox_blackwhite.Size = new System.Drawing.Size(301, 43);
-            this.checkBox_blackwhite.TabIndex = 4;
-            this.checkBox_blackwhite.Text = "Black and White";
-            this.checkBox_blackwhite.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_night
-            // 
-            this.checkBox_night.AutoSize = true;
-            this.checkBox_night.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_night.Location = new System.Drawing.Point(428, 778);
-            this.checkBox_night.Name = "checkBox_night";
-            this.checkBox_night.Size = new System.Drawing.Size(135, 43);
-            this.checkBox_night.TabIndex = 5;
-            this.checkBox_night.Text = "Night";
-            this.checkBox_night.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_kirsch
-            // 
-            this.checkBox_kirsch.AutoSize = true;
-            this.checkBox_kirsch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_kirsch.Location = new System.Drawing.Point(867, 778);
-            this.checkBox_kirsch.Name = "checkBox_kirsch";
-            this.checkBox_kirsch.Size = new System.Drawing.Size(150, 43);
-            this.checkBox_kirsch.TabIndex = 8;
-            this.checkBox_kirsch.Text = "Kirsch";
-            this.checkBox_kirsch.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_prewitt
-            // 
-            this.checkBox_prewitt.AutoSize = true;
-            this.checkBox_prewitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_prewitt.Location = new System.Drawing.Point(867, 713);
-            this.checkBox_prewitt.Name = "checkBox_prewitt";
-            this.checkBox_prewitt.Size = new System.Drawing.Size(159, 43);
-            this.checkBox_prewitt.TabIndex = 7;
-            this.checkBox_prewitt.Text = "Prewitt";
-            this.checkBox_prewitt.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -133,16 +94,64 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Edge : ";
             // 
+            // RB_BlackWhite
+            // 
+            this.RB_BlackWhite.AutoSize = true;
+            this.RB_BlackWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RB_BlackWhite.Location = new System.Drawing.Point(423, 703);
+            this.RB_BlackWhite.Name = "RB_BlackWhite";
+            this.RB_BlackWhite.Size = new System.Drawing.Size(322, 48);
+            this.RB_BlackWhite.TabIndex = 9;
+            this.RB_BlackWhite.TabStop = true;
+            this.RB_BlackWhite.Text = "Black and white";
+            this.RB_BlackWhite.UseVisualStyleBackColor = true;
+            // 
+            // RB_NightFilter
+            // 
+            this.RB_NightFilter.AutoSize = true;
+            this.RB_NightFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RB_NightFilter.Location = new System.Drawing.Point(423, 773);
+            this.RB_NightFilter.Name = "RB_NightFilter";
+            this.RB_NightFilter.Size = new System.Drawing.Size(242, 48);
+            this.RB_NightFilter.TabIndex = 10;
+            this.RB_NightFilter.TabStop = true;
+            this.RB_NightFilter.Text = "Night Filter";
+            this.RB_NightFilter.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(873, 773);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(163, 48);
+            this.radioButton1.TabIndex = 12;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Kirsch";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // RB_Prewitt
+            // 
+            this.RB_Prewitt.AutoSize = true;
+            this.RB_Prewitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RB_Prewitt.Location = new System.Drawing.Point(873, 703);
+            this.RB_Prewitt.Name = "RB_Prewitt";
+            this.RB_Prewitt.Size = new System.Drawing.Size(174, 48);
+            this.RB_Prewitt.TabIndex = 11;
+            this.RB_Prewitt.TabStop = true;
+            this.RB_Prewitt.Text = "Prewitt";
+            this.RB_Prewitt.UseVisualStyleBackColor = true;
+            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1512, 881);
-            this.Controls.Add(this.checkBox_kirsch);
-            this.Controls.Add(this.checkBox_prewitt);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.RB_Prewitt);
+            this.Controls.Add(this.RB_NightFilter);
+            this.Controls.Add(this.RB_BlackWhite);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox_night);
-            this.Controls.Add(this.checkBox_blackwhite);
             this.Controls.Add(this.labelFiltre);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
@@ -155,16 +164,21 @@
 
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label labelFiltre;
-        private System.Windows.Forms.CheckBox checkBox_blackwhite;
-        private System.Windows.Forms.CheckBox checkBox_night;
-        private System.Windows.Forms.CheckBox checkBox_kirsch;
-        private System.Windows.Forms.CheckBox checkBox_prewitt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton RB_BlackWhite;
+        private System.Windows.Forms.RadioButton RB_NightFilter;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RB_Prewitt;
     }
 }

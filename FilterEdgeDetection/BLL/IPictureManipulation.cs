@@ -9,6 +9,8 @@ namespace FilterEdgeDetection.BLL
 {
     public interface IPictureManipulation
     {
-        void BlackWhite(Bitmap bitmap);
+        Bitmap ApplyFilter(Bitmap bmp, int alpha, int red, int blue, int green);
+
+        Bitmap BlackWhite(Bitmap bitmap);
     }
 }
