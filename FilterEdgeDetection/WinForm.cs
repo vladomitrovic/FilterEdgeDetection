@@ -21,7 +21,7 @@ namespace FilterEdgeDetection
 
         private Bitmap filterResult = null;
 
-        private readonly IPictureIO pictureIO;
+        private IPictureIO pictureIO;
         private readonly IPictureManipulation pictureManipulation;
 
 
@@ -40,16 +40,10 @@ namespace FilterEdgeDetection
         private void btnLoad_Click(object sender, EventArgs e)
         {
             //Voir si nécessaire ce bout de code : car sinon pas de path
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select an image file.";
-            ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
-            ofd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
 
-
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                pictureBox1.Image = pictureIO.openPicture(ofd.FileName);
-            }
+                this.pictureIO = new PictureIO();
+                previewBitmap = pictureIO.openPicture();
+          
             //A enlever commentaire dès que le EDGE est fait
             //previewBitmap = originalBitmap.CopyToSquareCanvas(pictureBox1.Width);
             pictureBox1.Image = previewBitmap;
@@ -81,7 +75,7 @@ namespace FilterEdgeDetection
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            pictureIO.savePicture(resultBitmap);
+            pictureIO.savePicture(previewBitmap);
         }
     }
 }
