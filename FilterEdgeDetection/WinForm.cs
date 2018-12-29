@@ -83,5 +83,10 @@ namespace FilterEdgeDetection
         {
             pictureIO.savePicture(resultBitmap);
         }
+
+        private void RB_BlackWhite_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

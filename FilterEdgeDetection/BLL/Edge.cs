@@ -8,5 +8,6 @@ namespace FilterEdgeDetection.BLL
 {
    public class Edge
     {
+        //test
     }
 }

@@ -39,13 +39,17 @@ namespace FilterEdgeDetection
             this.RB_NightFilter = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.RB_Prewitt = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(46, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1409, 579);
             this.pictureBox1.TabIndex = 0;
@@ -78,7 +82,7 @@ namespace FilterEdgeDetection
             // 
             this.labelFiltre.AutoSize = true;
             this.labelFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFiltre.Location = new System.Drawing.Point(400, 646);
+            this.labelFiltre.Location = new System.Drawing.Point(25, 19);
             this.labelFiltre.Name = "labelFiltre";
             this.labelFiltre.Size = new System.Drawing.Size(137, 44);
             this.labelFiltre.TabIndex = 3;
@@ -88,7 +92,7 @@ namespace FilterEdgeDetection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(839, 646);
+            this.label1.Location = new System.Drawing.Point(13, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 44);
             this.label1.TabIndex = 6;
@@ -98,19 +102,20 @@ namespace FilterEdgeDetection
             // 
             this.RB_BlackWhite.AutoSize = true;
             this.RB_BlackWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_BlackWhite.Location = new System.Drawing.Point(423, 703);
+            this.RB_BlackWhite.Location = new System.Drawing.Point(48, 76);
             this.RB_BlackWhite.Name = "RB_BlackWhite";
             this.RB_BlackWhite.Size = new System.Drawing.Size(322, 48);
             this.RB_BlackWhite.TabIndex = 9;
             this.RB_BlackWhite.TabStop = true;
             this.RB_BlackWhite.Text = "Black and white";
             this.RB_BlackWhite.UseVisualStyleBackColor = true;
+            this.RB_BlackWhite.CheckedChanged += new System.EventHandler(this.RB_BlackWhite_CheckedChanged);
             // 
             // RB_NightFilter
             // 
             this.RB_NightFilter.AutoSize = true;
             this.RB_NightFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_NightFilter.Location = new System.Drawing.Point(423, 773);
+            this.RB_NightFilter.Location = new System.Drawing.Point(48, 146);
             this.RB_NightFilter.Name = "RB_NightFilter";
             this.RB_NightFilter.Size = new System.Drawing.Size(242, 48);
             this.RB_NightFilter.TabIndex = 10;
@@ -122,7 +127,7 @@ namespace FilterEdgeDetection
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(873, 773);
+            this.radioButton1.Location = new System.Drawing.Point(47, 146);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(163, 48);
             this.radioButton1.TabIndex = 12;
@@ -134,7 +139,7 @@ namespace FilterEdgeDetection
             // 
             this.RB_Prewitt.AutoSize = true;
             this.RB_Prewitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_Prewitt.Location = new System.Drawing.Point(873, 703);
+            this.RB_Prewitt.Location = new System.Drawing.Point(47, 76);
             this.RB_Prewitt.Name = "RB_Prewitt";
             this.RB_Prewitt.Size = new System.Drawing.Size(174, 48);
             this.RB_Prewitt.TabIndex = 11;
@@ -142,25 +147,45 @@ namespace FilterEdgeDetection
             this.RB_Prewitt.Text = "Prewitt";
             this.RB_Prewitt.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.RB_Prewitt);
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(782, 606);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(346, 223);
+            this.panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.RB_BlackWhite);
+            this.panel2.Controls.Add(this.labelFiltre);
+            this.panel2.Controls.Add(this.RB_NightFilter);
+            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel2.Location = new System.Drawing.Point(353, 606);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(384, 214);
+            this.panel2.TabIndex = 14;
+            // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1512, 881);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.RB_Prewitt);
-            this.Controls.Add(this.RB_NightFilter);
-            this.Controls.Add(this.RB_BlackWhite);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelFiltre);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.pictureBox1);
             this.Name = "WinForm";
             this.Text = "WinForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -180,5 +205,7 @@ namespace FilterEdgeDetection
         private System.Windows.Forms.RadioButton RB_NightFilter;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton RB_Prewitt;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
