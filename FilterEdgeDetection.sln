@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterEdgeDetection", "FilterEdgeDetection\FilterEdgeDetection.csproj", "{B8718C48-2576-449F-91A4-840A76223A11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{B8846B4C-8387-442D-8ABE-F72AC42ADC54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B8718C48-2576-449F-91A4-840A76223A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8718C48-2576-449F-91A4-840A76223A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8718C48-2576-449F-91A4-840A76223A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8846B4C-8387-442D-8ABE-F72AC42ADC54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8846B4C-8387-442D-8ABE-F72AC42ADC54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8846B4C-8387-442D-8ABE-F72AC42ADC54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8846B4C-8387-442D-8ABE-F72AC42ADC54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

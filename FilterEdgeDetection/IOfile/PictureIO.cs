@@ -14,16 +14,24 @@ namespace FilterEdgeDetection.IOfile
     {
         Bitmap uploadedPicture;
 
-        public Bitmap openPicture(String path)
+        public Bitmap openPicture()
         {
-           
-                StreamReader streamReader = new StreamReader(path);
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select an image file.";
+            ofd.Filter = "Png Images(*.png)|*.png|Jpeg Images(*.jpg)|*.jpg";
+            ofd.Filter += "|Bitmap Images(*.bmp)|*.bmp";
+
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                StreamReader streamReader = new StreamReader(ofd.FileName);
                 uploadedPicture = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
                 streamReader.Close();
-            
 
-            return uploadedPicture;
-        }
+                return uploadedPicture;
+            }
+            return null;
+         }
 
         public void savePicture(Bitmap savedPicture)
         {
@@ -39,29 +47,27 @@ namespace FilterEdgeDetection.IOfile
               path = sfd.FileName;
 
                 if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-
-                string fileExtension = Path.GetExtension(path).ToUpper();
-                ImageFormat imgFormat = ImageFormat.Png;
-
-                if (fileExtension == "BMP")
                 {
-                    imgFormat = ImageFormat.Bmp;
+                    string fileExtension = Path.GetExtension(sfd.FileName).ToUpper();
+                    ImageFormat imgFormat = ImageFormat.Png;
+
+                    if (fileExtension == "BMP")
+                    {
+                        imgFormat = ImageFormat.Bmp;
+                    }
+                    else if (fileExtension == "JPG")
+                    {
+                        imgFormat = ImageFormat.Jpeg;
+                    }
+
+                    StreamWriter streamWriter = new StreamWriter(sfd.FileName, false);
+                    savedPicture.Save(streamWriter.BaseStream, imgFormat);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                    savedPicture = null;
                 }
-                else if (fileExtension == "JPG")
-                {
-                    imgFormat = ImageFormat.Jpeg;
-                }
-
-
-                StreamWriter streamWriter = new StreamWriter(path, false);
-                savedPicture.Save(streamWriter.BaseStream, imgFormat);
-                streamWriter.Flush();
-                streamWriter.Close();
-
-                savedPicture = null;
             }
-          }
         }
 
 
