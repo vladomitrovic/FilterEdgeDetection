@@ -33,25 +33,25 @@ namespace FilterEdgeDetection
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.labelFiltre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.RB_BlackWhite = new System.Windows.Forms.RadioButton();
-            this.RB_NightFilter = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.RB_Prewitt = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelFiltre = new System.Windows.Forms.Label();
+            this.cmbFilters = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBox1.Location = new System.Drawing.Point(46, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1409, 579);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -59,7 +59,7 @@ namespace FilterEdgeDetection
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(46, 703);
+            this.btnLoad.Location = new System.Drawing.Point(56, 643);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(285, 87);
             this.btnLoad.TabIndex = 1;
@@ -70,23 +70,13 @@ namespace FilterEdgeDetection
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1170, 703);
+            this.btnSave.Location = new System.Drawing.Point(1161, 643);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(285, 87);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // labelFiltre
-            // 
-            this.labelFiltre.AutoSize = true;
-            this.labelFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFiltre.Location = new System.Drawing.Point(25, 19);
-            this.labelFiltre.Name = "labelFiltre";
-            this.labelFiltre.Size = new System.Drawing.Size(137, 44);
-            this.labelFiltre.TabIndex = 3;
-            this.labelFiltre.Text = "Filtre : ";
             // 
             // label1
             // 
@@ -97,31 +87,6 @@ namespace FilterEdgeDetection
             this.label1.Size = new System.Drawing.Size(139, 44);
             this.label1.TabIndex = 6;
             this.label1.Text = "Edge : ";
-            // 
-            // RB_BlackWhite
-            // 
-            this.RB_BlackWhite.AutoSize = true;
-            this.RB_BlackWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_BlackWhite.Location = new System.Drawing.Point(48, 76);
-            this.RB_BlackWhite.Name = "RB_BlackWhite";
-            this.RB_BlackWhite.Size = new System.Drawing.Size(322, 48);
-            this.RB_BlackWhite.TabIndex = 9;
-            this.RB_BlackWhite.TabStop = true;
-            this.RB_BlackWhite.Text = "Black and white";
-            this.RB_BlackWhite.UseVisualStyleBackColor = true;
-            this.RB_BlackWhite.CheckedChanged += new System.EventHandler(this.RB_BlackWhite_CheckedChanged);
-            // 
-            // RB_NightFilter
-            // 
-            this.RB_NightFilter.AutoSize = true;
-            this.RB_NightFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_NightFilter.Location = new System.Drawing.Point(48, 146);
-            this.RB_NightFilter.Name = "RB_NightFilter";
-            this.RB_NightFilter.Size = new System.Drawing.Size(242, 48);
-            this.RB_NightFilter.TabIndex = 10;
-            this.RB_NightFilter.TabStop = true;
-            this.RB_NightFilter.Text = "Night Filter";
-            this.RB_NightFilter.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -157,35 +122,53 @@ namespace FilterEdgeDetection
             this.panel1.Size = new System.Drawing.Size(346, 223);
             this.panel1.TabIndex = 13;
             // 
-            // panel2
+            // labelFiltre
             // 
-            this.panel2.Controls.Add(this.RB_BlackWhite);
-            this.panel2.Controls.Add(this.labelFiltre);
-            this.panel2.Controls.Add(this.RB_NightFilter);
-            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel2.Location = new System.Drawing.Point(353, 606);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(384, 214);
-            this.panel2.TabIndex = 14;
+            this.labelFiltre.AutoSize = true;
+            this.labelFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFiltre.Location = new System.Drawing.Point(363, 625);
+            this.labelFiltre.Name = "labelFiltre";
+            this.labelFiltre.Size = new System.Drawing.Size(137, 44);
+            this.labelFiltre.TabIndex = 16;
+            this.labelFiltre.Text = "Filtre : ";
+            // 
+            // cmbFilters
+            // 
+            this.cmbFilters.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFilters.FormattingEnabled = true;
+            this.cmbFilters.Items.AddRange(new object[] {
+            "None",
+            "Black and white",
+            "Night Filter"});
+            this.cmbFilters.SelectedIndex = 0;
+            this.cmbFilters.Location = new System.Drawing.Point(371, 693);
+            this.cmbFilters.Name = "cmbFilters";
+            this.cmbFilters.Size = new System.Drawing.Size(374, 50);
+            this.cmbFilters.TabIndex = 17;
+            this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1512, 881);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.cmbFilters);
+            this.Controls.Add(this.labelFiltre);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.pictureBox1);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WinForm";
-            this.Text = "WinForm";
+            this.Text = "Image Edge Detection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -199,13 +182,11 @@ namespace FilterEdgeDetection
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label labelFiltre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton RB_BlackWhite;
-        private System.Windows.Forms.RadioButton RB_NightFilter;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton RB_Prewitt;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelFiltre;
+        private System.Windows.Forms.ComboBox cmbFilters;
     }
 }

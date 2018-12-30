@@ -18,18 +18,22 @@ namespace FilterEdgeDetection
         private Bitmap originalBitmap = null;
         private Bitmap previewBitmap = null;
         private Bitmap resultBitmap = null;
+        Bitmap selectedSource = null;
 
         private Bitmap filterResult = null;
 
         private IPictureIO pictureIO;
-        private readonly IPictureManipulation pictureManipulation;
+        private  IPictureManipulation pictureManipulation;
+        private IEdge edge;
 
 
-        public WinForm(IPictureIO pictureIO, IPictureManipulation pictureManipulation)
+        public WinForm(IPictureIO pictureIO, IPictureManipulation pictureManipulation, IEdge edge)
         {
             this.pictureIO = pictureIO;
             this.pictureManipulation = pictureManipulation;
-           
+            this.edge = edge;
+
+
         }
 
         public WinForm()
@@ -41,33 +45,42 @@ namespace FilterEdgeDetection
         {
             //Voir si nécessaire ce bout de code : car sinon pas de path
 
-                this.pictureIO = new PictureIO();
-                previewBitmap = pictureIO.openPicture();
-          
+
+            this.pictureIO = new PictureIO();
+            this.edge = new Edge();
+
+            previewBitmap = pictureIO.openPicture();
+
+
             //A enlever commentaire dès que le EDGE est fait
-            //previewBitmap = originalBitmap.CopyToSquareCanvas(pictureBox1.Width);
+            previewBitmap = edge.CopyToSquareCanvas(previewBitmap, pictureBox1.Width);
             pictureBox1.Image = previewBitmap;
 
-             //   ApplyFilter(true);
+            ApplyFilter(true, previewBitmap) ;
            
         }
 
 
-        private void ApplyFilter()
+        private void ApplyFilter(bool preview, Bitmap bitmap)
         {
-            if (RB_BlackWhite.Checked)
-            {
-                filterResult = pictureManipulation.BlackWhite(previewBitmap);
-              
-            }
+            this.pictureManipulation = new Filter();
 
-            else
+            switch (cmbFilters.SelectedItem.ToString())
             {
-                filterResult = pictureManipulation.ApplyFilter(previewBitmap, 1, 1, 1, 25);
-               
-            }
-                
+                case "Black and white":
+                    bitmap = pictureManipulation.BlackWhite(previewBitmap);
+                    break;
 
+                case "Night filter":
+                    bitmap = pictureManipulation.ApplyFilter(previewBitmap,1,1,1,25);
+                    break;
+
+                //The default is "None" because there is not risk that one day we remove the "none"
+                default:
+                    //When the user click on "none" we come back to the original picture
+                    bitmap = originalBitmap;
+                    break;
+            }
 
         }
 
@@ -75,12 +88,14 @@ namespace FilterEdgeDetection
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            this.pictureIO = new PictureIO();
             pictureIO.savePicture(previewBitmap);
         }
+        
 
-        private void RB_BlackWhite_CheckedChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ApplyFilter(true, previewBitmap);
         }
     }
 }
