@@ -49,37 +49,45 @@ namespace FilterEdgeDetection
             this.pictureIO = new PictureIO();
             this.edge = new Edge();
 
-            previewBitmap = pictureIO.openPicture();
+            originalBitmap = pictureIO.openPicture();
 
+            previewBitmap = originalBitmap;
 
             //A enlever commentaire dès que le EDGE est fait
             previewBitmap = edge.CopyToSquareCanvas(previewBitmap, pictureBox1.Width);
             pictureBox1.Image = previewBitmap;
 
-            ApplyFilter(true, previewBitmap) ;
+            ApplyFilter(true) ;
            
         }
 
 
-        private void ApplyFilter(bool preview, Bitmap bitmap)
+        private void ApplyFilter(bool preview)
         {
             this.pictureManipulation = new Filter();
 
             switch (cmbFilters.SelectedItem.ToString())
             {
                 case "Black and white":
-                    bitmap = pictureManipulation.BlackWhite(previewBitmap);
+                    filterResult = pictureManipulation.BlackWhite(originalBitmap);
                     break;
 
                 case "Night filter":
-                    bitmap = pictureManipulation.ApplyFilter(previewBitmap,1,1,1,25);
+                    filterResult = pictureManipulation.ApplyFilter(originalBitmap,1,1,1,25);
                     break;
 
                 //The default is "None" because there is not risk that one day we remove the "none"
                 default:
                     //When the user click on "none" we come back to the original picture
-                    bitmap = originalBitmap;
+                    filterResult = originalBitmap;
                     break;
+            }
+
+            resultBitmap = filterResult;
+
+            if (resultBitmap != null)
+            {
+               pictureBox1.Image = resultBitmap;                
             }
 
         }
@@ -93,9 +101,9 @@ namespace FilterEdgeDetection
         }
         
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void filterListener(object sender, EventArgs e)
         {
-            ApplyFilter(true, previewBitmap);
+            ApplyFilter(true);
         }
     }
 }

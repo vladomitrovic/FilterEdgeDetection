@@ -147,7 +147,7 @@ namespace FilterEdgeDetection
             this.cmbFilters.Name = "cmbFilters";
             this.cmbFilters.Size = new System.Drawing.Size(374, 50);
             this.cmbFilters.TabIndex = 17;
-            this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.filterListener);
             // 
             // WinForm
             // 
