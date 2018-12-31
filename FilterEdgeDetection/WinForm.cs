@@ -21,6 +21,7 @@ namespace FilterEdgeDetection
         Bitmap selectedSource = null;
 
         private Bitmap filterResult = null;
+        private Bitmap edgeResult = null;
 
         private IPictureIO pictureIO;
         private  IPictureManipulation pictureManipulation;
@@ -44,8 +45,8 @@ namespace FilterEdgeDetection
         private void btnLoad_Click(object sender, EventArgs e)
         {
             //Voir si nécessaire ce bout de code : car sinon pas de path
-
-
+            //ApplyFilter(false);
+            
             this.pictureIO = new PictureIO();
             this.edge = new Edge();
 
@@ -53,8 +54,10 @@ namespace FilterEdgeDetection
 
             previewBitmap = originalBitmap;
 
-            //A enlever commentaire dès que le EDGE est fait
+            //Size in the picture box
             previewBitmap = edge.CopyToSquareCanvas(previewBitmap, pictureBox1.Width);
+
+            //Put the picture in the picture box
             pictureBox1.Image = previewBitmap;
 
             ApplyFilter(true) ;
@@ -64,7 +67,13 @@ namespace FilterEdgeDetection
 
         private void ApplyFilter(bool preview)
         {
+            if (previewBitmap == null ||  cmbFilters.SelectedIndex == -1)
+            {
+                return;
+            }
+
             this.pictureManipulation = new Filter();
+            this.edge = new Edge();
 
             switch (cmbFilters.SelectedItem.ToString())
             {
@@ -72,24 +81,51 @@ namespace FilterEdgeDetection
                     filterResult = pictureManipulation.BlackWhite(originalBitmap);
                     break;
 
-                case "Night filter":
+                case "Night Filter":
                     filterResult = pictureManipulation.ApplyFilter(originalBitmap,1,1,1,25);
                     break;
 
-                //The default is "None" because there is not risk that one day we remove the "none"
-                default:
-                    //When the user click on "none" we come back to the original picture
+                case "None":
                     filterResult = originalBitmap;
                     break;
+
+                //The default is "None" because there is not risk that one day we remove the "none"
+              /*  default:
+                    //When the user click on "none" we come back to the original picture
+                    filterResult = originalBitmap;
+                    break;*/
             }
 
-            resultBitmap = filterResult;
-
-            if (resultBitmap != null)
+           
+            switch (CmbEdge.SelectedItem.ToString())
             {
-               pictureBox1.Image = resultBitmap;                
+                
+
+                case "Prewitt":
+                    edgeResult = edge.PrewittFilter(filterResult, false);
+                    break;
+
+                case "Kirsch":
+                    edgeResult = edge.KirschFilter(filterResult, false);
+                    break;
+
+                case "None":
+                    edgeResult = filterResult;
+                    break;
+
+                    //The default is "None" because there is not risk that one day we remove the "none"
+                    /*  default:
+                          //When the user click on "none" we come back to the original picture
+                          filterResult = originalBitmap;
+                          break;*/
             }
 
+
+            if (edgeResult != null)
+            {
+                pictureBox1.Image = edgeResult;
+            }
+            
         }
 
 
@@ -104,6 +140,11 @@ namespace FilterEdgeDetection
         private void filterListener(object sender, EventArgs e)
         {
             ApplyFilter(true);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

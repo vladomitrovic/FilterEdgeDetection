@@ -10,5 +10,9 @@ namespace FilterEdgeDetection.BLL
     public interface IEdge
     {
         Bitmap CopyToSquareCanvas(Bitmap sourceBitmap, int canvasWidthLenght);
+
+        Bitmap PrewittFilter(Bitmap sourceBitmap, bool grayscale);
+
+         Bitmap KirschFilter(Bitmap sourceBitmap, bool grayscale);
     }
 }

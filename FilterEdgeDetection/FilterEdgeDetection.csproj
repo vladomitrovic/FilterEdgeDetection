@@ -60,6 +60,7 @@
     <Compile Include="BLL\Filter.cs" />
     <Compile Include="BLL\IEdge.cs" />
     <Compile Include="BLL\IPictureManipulation.cs" />
+    <Compile Include="BLL\Matrix.cs" />
     <Compile Include="IOfile\IPictureIO.cs" />
     <Compile Include="IOfile\PictureIO.cs" />
     <Compile Include="Program.cs" />

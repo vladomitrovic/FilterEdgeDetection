@@ -34,13 +34,10 @@ namespace FilterEdgeDetection
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.RB_Prewitt = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.labelFiltre = new System.Windows.Forms.Label();
             this.cmbFilters = new System.Windows.Forms.ComboBox();
+            this.CmbEdge = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -59,7 +56,7 @@ namespace FilterEdgeDetection
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(56, 643);
+            this.btnLoad.Location = new System.Drawing.Point(46, 645);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(285, 87);
             this.btnLoad.TabIndex = 1;
@@ -70,7 +67,7 @@ namespace FilterEdgeDetection
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1161, 643);
+            this.btnSave.Location = new System.Drawing.Point(1170, 656);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(285, 87);
             this.btnSave.TabIndex = 2;
@@ -82,45 +79,11 @@ namespace FilterEdgeDetection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 19);
+            this.label1.Location = new System.Drawing.Point(783, 625);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 44);
             this.label1.TabIndex = 6;
             this.label1.Text = "Edge : ";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(47, 146);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(163, 48);
-            this.radioButton1.TabIndex = 12;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Kirsch";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // RB_Prewitt
-            // 
-            this.RB_Prewitt.AutoSize = true;
-            this.RB_Prewitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RB_Prewitt.Location = new System.Drawing.Point(47, 76);
-            this.RB_Prewitt.Name = "RB_Prewitt";
-            this.RB_Prewitt.Size = new System.Drawing.Size(174, 48);
-            this.RB_Prewitt.TabIndex = 11;
-            this.RB_Prewitt.TabStop = true;
-            this.RB_Prewitt.Text = "Prewitt";
-            this.RB_Prewitt.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.RB_Prewitt);
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(782, 606);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(346, 223);
-            this.panel1.TabIndex = 13;
             // 
             // labelFiltre
             // 
@@ -142,21 +105,37 @@ namespace FilterEdgeDetection
             "None",
             "Black and white",
             "Night Filter"});
-            this.cmbFilters.SelectedIndex = 0;
             this.cmbFilters.Location = new System.Drawing.Point(371, 693);
             this.cmbFilters.Name = "cmbFilters";
-            this.cmbFilters.Size = new System.Drawing.Size(374, 50);
+            this.cmbFilters.Size = new System.Drawing.Size(350, 50);
             this.cmbFilters.TabIndex = 17;
             this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.filterListener);
+            // 
+            // CmbEdge
+            // 
+            this.CmbEdge.BackColor = System.Drawing.SystemColors.Window;
+            this.CmbEdge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbEdge.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbEdge.FormattingEnabled = true;
+            this.CmbEdge.Items.AddRange(new object[] {
+            "None",
+            "Prewitt",
+            "Kirsch"});
+            this.CmbEdge.Location = new System.Drawing.Point(776, 693);
+            this.CmbEdge.Name = "CmbEdge";
+            this.CmbEdge.Size = new System.Drawing.Size(350, 50);
+            this.CmbEdge.TabIndex = 18;
+            this.CmbEdge.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // WinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1512, 881);
+            this.ClientSize = new System.Drawing.Size(1512, 816);
+            this.Controls.Add(this.CmbEdge);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbFilters);
             this.Controls.Add(this.labelFiltre);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.pictureBox1);
@@ -165,8 +144,6 @@ namespace FilterEdgeDetection
             this.Name = "WinForm";
             this.Text = "Image Edge Detection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,10 +160,8 @@ namespace FilterEdgeDetection
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton RB_Prewitt;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelFiltre;
         private System.Windows.Forms.ComboBox cmbFilters;
+        private System.Windows.Forms.ComboBox CmbEdge;
     }
 }
