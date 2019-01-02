@@ -36,7 +36,7 @@ namespace FilterEdgeDetection
             this.label1 = new System.Windows.Forms.Label();
             this.labelFiltre = new System.Windows.Forms.Label();
             this.cmbFilters = new System.Windows.Forms.ComboBox();
-            this.CmbEdge = new System.Windows.Forms.ComboBox();
+            this.cmbEdge = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,9 +45,10 @@ namespace FilterEdgeDetection
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(17, 5);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1409, 579);
+            this.pictureBox1.Size = new System.Drawing.Size(530, 244);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -56,9 +57,10 @@ namespace FilterEdgeDetection
             // btnLoad
             // 
             this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoad.Location = new System.Drawing.Point(46, 645);
+            this.btnLoad.Location = new System.Drawing.Point(17, 270);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(285, 87);
+            this.btnLoad.Size = new System.Drawing.Size(107, 36);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -67,9 +69,10 @@ namespace FilterEdgeDetection
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1170, 656);
+            this.btnSave.Location = new System.Drawing.Point(439, 275);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(285, 87);
+            this.btnSave.Size = new System.Drawing.Size(107, 36);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -79,9 +82,10 @@ namespace FilterEdgeDetection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(783, 625);
+            this.label1.Location = new System.Drawing.Point(294, 262);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 44);
+            this.label1.Size = new System.Drawing.Size(54, 18);
             this.label1.TabIndex = 6;
             this.label1.Text = "Edge : ";
             // 
@@ -89,9 +93,10 @@ namespace FilterEdgeDetection
             // 
             this.labelFiltre.AutoSize = true;
             this.labelFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFiltre.Location = new System.Drawing.Point(363, 625);
+            this.labelFiltre.Location = new System.Drawing.Point(136, 262);
+            this.labelFiltre.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.labelFiltre.Name = "labelFiltre";
-            this.labelFiltre.Size = new System.Drawing.Size(137, 44);
+            this.labelFiltre.Size = new System.Drawing.Size(52, 18);
             this.labelFiltre.TabIndex = 16;
             this.labelFiltre.Text = "Filtre : ";
             // 
@@ -105,34 +110,36 @@ namespace FilterEdgeDetection
             "None",
             "Black and white",
             "Night Filter"});
-            this.cmbFilters.Location = new System.Drawing.Point(371, 693);
+            this.cmbFilters.Location = new System.Drawing.Point(139, 291);
+            this.cmbFilters.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.cmbFilters.Name = "cmbFilters";
-            this.cmbFilters.Size = new System.Drawing.Size(350, 50);
+            this.cmbFilters.Size = new System.Drawing.Size(134, 26);
             this.cmbFilters.TabIndex = 17;
             this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.filterListener);
             // 
-            // CmbEdge
+            // cmbEdge
             // 
-            this.CmbEdge.BackColor = System.Drawing.SystemColors.Window;
-            this.CmbEdge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbEdge.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CmbEdge.FormattingEnabled = true;
-            this.CmbEdge.Items.AddRange(new object[] {
+            this.cmbEdge.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbEdge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEdge.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEdge.FormattingEnabled = true;
+            this.cmbEdge.Items.AddRange(new object[] {
             "None",
             "Prewitt",
             "Kirsch"});
-            this.CmbEdge.Location = new System.Drawing.Point(776, 693);
-            this.CmbEdge.Name = "CmbEdge";
-            this.CmbEdge.Size = new System.Drawing.Size(350, 50);
-            this.CmbEdge.TabIndex = 18;
-            this.CmbEdge.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbEdge.Location = new System.Drawing.Point(291, 291);
+            this.cmbEdge.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.cmbEdge.Name = "cmbEdge";
+            this.cmbEdge.Size = new System.Drawing.Size(134, 26);
+            this.cmbEdge.TabIndex = 18;
+            this.cmbEdge.SelectedIndexChanged += new System.EventHandler(this.edgeListener);
             // 
             // WinForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1512, 816);
-            this.Controls.Add(this.CmbEdge);
+            this.ClientSize = new System.Drawing.Size(567, 342);
+            this.Controls.Add(this.cmbEdge);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbFilters);
             this.Controls.Add(this.labelFiltre);
@@ -141,6 +148,7 @@ namespace FilterEdgeDetection
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "WinForm";
             this.Text = "Image Edge Detection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -162,6 +170,6 @@ namespace FilterEdgeDetection
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelFiltre;
         private System.Windows.Forms.ComboBox cmbFilters;
-        private System.Windows.Forms.ComboBox CmbEdge;
+        private System.Windows.Forms.ComboBox cmbEdge;
     }
 }

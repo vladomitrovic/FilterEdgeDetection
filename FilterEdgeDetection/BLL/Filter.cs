@@ -29,19 +29,21 @@ namespace FilterEdgeDetection.BLL
         }
 
         //black and white filter
-        public Bitmap BlackWhite(Bitmap Bmp)
+        public Bitmap BlackWhite(Bitmap bmp)
         {
+            Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
+
             int rgb;
             Color c;
 
-            for (int y = 0; y < Bmp.Height; y++)
-                for (int x = 0; x < Bmp.Width; x++)
+            for (int y = 0; y < bmp.Height; y++)
+                for (int x = 0; x < bmp.Width; x++)
                 {
-                    c = Bmp.GetPixel(x, y);
+                    c = bmp.GetPixel(x, y);
                     rgb = (int)((c.R + c.G + c.B) / 3);
-                    Bmp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
+                    temp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
                 }
-            return Bmp;
+            return temp;
 
         }
     }

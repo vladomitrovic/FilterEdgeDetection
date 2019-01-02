@@ -40,6 +40,8 @@ namespace FilterEdgeDetection
         public WinForm()
         {
             InitializeComponent();
+            cmbFilters.SelectedIndex = 0;
+            cmbEdge.SelectedIndex = 0;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -97,7 +99,7 @@ namespace FilterEdgeDetection
             }
 
            
-            switch (CmbEdge.SelectedItem.ToString())
+            switch (cmbEdge.SelectedItem.ToString())
             {
                 
 
@@ -124,6 +126,7 @@ namespace FilterEdgeDetection
             if (edgeResult != null)
             {
                 pictureBox1.Image = edgeResult;
+                resultBitmap = edgeResult;
             }
             
         }
@@ -133,7 +136,7 @@ namespace FilterEdgeDetection
         private void btnSave_Click(object sender, EventArgs e)
         {
             this.pictureIO = new PictureIO();
-            pictureIO.savePicture(previewBitmap);
+            pictureIO.savePicture(resultBitmap);
         }
         
 
@@ -142,9 +145,9 @@ namespace FilterEdgeDetection
             ApplyFilter(true);
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void edgeListener(object sender, EventArgs e)
         {
-
+            ApplyFilter(true);
         }
     }
 }
