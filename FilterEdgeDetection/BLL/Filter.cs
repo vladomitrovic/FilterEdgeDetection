@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FilterEdgeDetection.BLL
 {
-   public class Filter : IPictureManipulation
+   public class Filter : IFilter
     {
         //Night filter
         public Bitmap ApplyFilter(Bitmap bmp, int alpha, int red, int blue, int green)

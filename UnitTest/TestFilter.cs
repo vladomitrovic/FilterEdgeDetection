@@ -15,7 +15,7 @@ namespace UnitTest
         [TestMethod]
         public void TestBlackAndWhiteFilter()
         {
-            var filter = Substitute.For<IPictureManipulation>();
+            var filter = Substitute.For<IFilter>();
             Bitmap baseImage = new Bitmap("C:/Users/vlado/source/repos/FilterEdgeDetection/UnitTest/Resources/swissBase.png");
             Bitmap exeptedImage = new Bitmap("C:/Users/vlado/source/repos/FilterEdgeDetection/UnitTest/Resources/swissBlackW.png");
 
