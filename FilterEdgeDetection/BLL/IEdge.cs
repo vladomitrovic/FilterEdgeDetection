@@ -11,8 +11,8 @@ namespace FilterEdgeDetection.BLL
     {
         Bitmap CopyToSquareCanvas(Bitmap sourceBitmap, int canvasWidthLenght);
 
-        Bitmap PrewittFilter(Bitmap sourceBitmap, bool grayscale);
+        Bitmap PrewittFilter(Bitmap sourceBitmap);
 
-         Bitmap KirschFilter(Bitmap sourceBitmap, bool grayscale);
+         Bitmap KirschFilter(Bitmap sourceBitmap);
     }
 }

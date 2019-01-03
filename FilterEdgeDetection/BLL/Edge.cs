@@ -42,25 +42,23 @@ namespace FilterEdgeDetection.BLL
             return bitmapResult;
         }
 
-        public Bitmap PrewittFilter( Bitmap sourceBitmap,
-                                               bool grayscale = true)
+        public Bitmap PrewittFilter( Bitmap sourceBitmap)
         {
             Bitmap resultBitmap = ConvolutionFilter(sourceBitmap,
                                                Matrix.Prewitt3x3Horizontal,
                                                  Matrix.Prewitt3x3Vertical,
-                                                        1.0, 0, grayscale);
+                                                        1.0, 0);
 
             return resultBitmap;
         }
 
 
-        public  Bitmap KirschFilter( Bitmap sourceBitmap,
-                                         bool grayscale = true)
+        public  Bitmap KirschFilter( Bitmap sourceBitmap)
         {
             Bitmap resultBitmap = ConvolutionFilter(sourceBitmap,
                                                 Matrix.Kirsch3x3Horizontal,
                                                   Matrix.Kirsch3x3Vertical,
-                                                        1.0, 0, grayscale);
+                                                        1.0, 0);
 
             return resultBitmap;
         }
@@ -85,22 +83,6 @@ namespace FilterEdgeDetection.BLL
             Marshal.Copy(sourceData.Scan0, pixelBuffer, 0, pixelBuffer.Length);
             sourceBitmap.UnlockBits(sourceData);
 
-            if (grayscale == true)
-            {
-                float rgb = 0;
-
-                for (int k = 0; k < pixelBuffer.Length; k += 4)
-                {
-                    rgb = pixelBuffer[k] * 0.11f;
-                    rgb += pixelBuffer[k + 1] * 0.59f;
-                    rgb += pixelBuffer[k + 2] * 0.3f;
-
-                    pixelBuffer[k] = (byte)rgb;
-                    pixelBuffer[k + 1] = pixelBuffer[k];
-                    pixelBuffer[k + 2] = pixelBuffer[k];
-                    pixelBuffer[k + 3] = 255;
-                }
-            }
 
             double blueX = 0.0;
             double greenX = 0.0;
