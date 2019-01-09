@@ -10,15 +10,20 @@ namespace UnitTest
 {
     public class ImageComparaison
     {
-        public static void AreEqual(Bitmap image1, Bitmap image2)
+        public static void AreEqual(Bitmap bitmap, Bitmap bitmapResult)
         {
-            for (int x = 0; x < image2.Width; x++)
+            //loop that take every pixel
+            for (int i = 0; i < bitmapResult.Width; i++)
             {
-                for (int y = 0; y < image2.Height; y++)
+                //loop that take every pixel
+                for (int j = 0; j < bitmapResult.Height; j++)
                 {
-                    if (image1.GetPixel(x, y) != image2.GetPixel(x, y))
+                    //Compares the pixels and throw a fail if they are differents
+                    if (bitmapResult.GetPixel(i, j) != bitmap.GetPixel(i, j))
+                    {
                         throw new AssertFailedException(
-                         string.Format("The pixelCheck failed"));
+                         string.Format("The pixel check failed"));
+                    }
                 }
             }
         }
