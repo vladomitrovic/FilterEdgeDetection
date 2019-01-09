@@ -12,8 +12,9 @@ namespace FilterEdgeDetection.BLL
         //Night filter
         public Bitmap ApplyFilter(Bitmap bmp, int alpha, int red, int blue, int green)
         {
-
-            Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
+            try
+            {
+                Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
 
 
             for (int i = 0; i < bmp.Width; i++)
@@ -26,25 +27,41 @@ namespace FilterEdgeDetection.BLL
                 }
             }
             return temp;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         //black and white filter
         public Bitmap BlackWhite(Bitmap bmp)
         {
-            Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
+            try
+            {
+                Bitmap temp = new Bitmap(bmp.Width, bmp.Height);
 
-            int rgb;
-            Color c;
+                int rgb;
+                Color c;
 
-            for (int y = 0; y < bmp.Height; y++)
-                for (int x = 0; x < bmp.Width; x++)
-                {
-                    c = bmp.GetPixel(x, y);
-                    rgb = (int)((c.R + c.G + c.B) / 3);
-                    temp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
-                }
-            return temp;
+                for (int y = 0; y < bmp.Height; y++)
+                    for (int x = 0; x < bmp.Width; x++)
+                    {
+                        c = bmp.GetPixel(x, y);
+                        rgb = (int)((c.R + c.G + c.B) / 3);
+                        temp.SetPixel(x, y, Color.FromArgb(rgb, rgb, rgb));
+                    }
+                return temp;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
+                
+           
+        }
 
         }
     }
-}
+

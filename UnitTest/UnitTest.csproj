@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEdge.cs" />
     <Compile Include="TestFilter.cs" />
+    <Compile Include="TestIOpicture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

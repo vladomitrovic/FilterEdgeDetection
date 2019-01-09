@@ -12,6 +12,7 @@ namespace FilterEdgeDetection.BLL
 {
     public class Edge : IEdge
     {
+
         public Bitmap CopyToSquareCanvas(Bitmap sourceBitmap, int canvasWidthLenght)
         {
             float ratio = 1.0f;

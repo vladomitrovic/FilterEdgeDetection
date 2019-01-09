@@ -141,11 +141,11 @@ namespace FilterEdgeDetection
 
 
                 case "Prewitt":
-                    edgeResult = edge.PrewittFilter(filterResult, false);
+                    edgeResult = edge.PrewittFilter(filterResult);
                     break;
 
                 case "Kirsch":
-                    edgeResult = edge.KirschFilter(filterResult, false);
+                    edgeResult = edge.KirschFilter(filterResult);
                     break;
 
                 //The default is "None" because there is not risk that one day we remove the "none"

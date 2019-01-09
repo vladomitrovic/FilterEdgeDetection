@@ -64,7 +64,7 @@ namespace FilterEdgeDetection.IOfile
                     savedPicture.Save(streamWriter.BaseStream, imgFormat);
                     streamWriter.Flush();
                     streamWriter.Close();
-
+           
                     savedPicture = null;
                 }
             }
