@@ -94,6 +94,7 @@ namespace FilterEdgeDetection
                     break;
             }
 
+            ApplyEdge(true);
            
             switch (cmbEdge.SelectedItem.ToString())
             {
@@ -121,6 +122,46 @@ namespace FilterEdgeDetection
                 resultBitmap = edgeResult;
             }
             
+        }
+
+        private void ApplyEdge(bool preview)
+        {
+            if (previewBitmap == null || cmbFilters.SelectedIndex == -1 || cmbEdge.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            this.pictureManipulation = new Filter();
+            this.edge = new Edge();
+
+          
+
+            switch (cmbEdge.SelectedItem.ToString())
+            {
+
+
+                case "Prewitt":
+                    edgeResult = edge.PrewittFilter(filterResult, false);
+                    break;
+
+                case "Kirsch":
+                    edgeResult = edge.KirschFilter(filterResult, false);
+                    break;
+
+                //The default is "None" because there is not risk that one day we remove the "none"
+                default:
+                    //When the user click on "none" we come back to the filter results beacause we can't have an edge without a filter
+                    edgeResult = filterResult;
+                    break;
+            }
+
+
+            if (edgeResult != null)
+            {
+                pictureBox1.Image = edgeResult;
+                resultBitmap = edgeResult;
+            }
+
         }
 
 
