@@ -46,23 +46,23 @@ namespace UnitTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void TestBlackAndWhiteFilterNull()
         {
             Filter imageFilter = new Filter();
 
             Bitmap bitmamNull = null;
             Bitmap result = imageFilter.BlackWhite(bitmamNull);
+            Assert.AreEqual(result, null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void TestNightFilterNull()
         {
             Filter imageFilter = new Filter();
 
             Bitmap bitmamNull = null;
             Bitmap result = imageFilter.ApplyFilter(bitmamNull, 1, 1, 1, 25);
+            Assert.AreEqual(result, null);
         }
 
 

@@ -33,7 +33,7 @@ namespace FilterEdgeDetection.IOfile
             return null;
          }
 
-        public void savePicture(Bitmap savedPicture)
+        public bool savePicture(Bitmap savedPicture)
         {
             String path;
 
@@ -66,8 +66,12 @@ namespace FilterEdgeDetection.IOfile
                     streamWriter.Close();
            
                     savedPicture = null;
+
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
 
 

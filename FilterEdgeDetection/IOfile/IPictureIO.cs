@@ -10,6 +10,6 @@ namespace FilterEdgeDetection.IOfile
     public interface IPictureIO
     {
         Bitmap openPicture();
-        void savePicture(Bitmap picture);
+        bool savePicture(Bitmap picture);
     }
 }

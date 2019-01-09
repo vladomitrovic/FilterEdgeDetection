@@ -28,7 +28,7 @@ namespace FilterEdgeDetection.BLL
             }
             return temp;
             }
-            catch (Exception e)
+            catch 
             {
                 return null;
             }
@@ -53,7 +53,7 @@ namespace FilterEdgeDetection.BLL
                     }
                 return temp;
             }
-            catch (Exception e)
+            catch 
             {
                 return null;
             }
