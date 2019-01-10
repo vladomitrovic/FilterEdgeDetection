@@ -19,16 +19,11 @@ namespace UnitTest
         [TestMethod]
         public void TestBlackAndWhiteFilter()
         {
-            var filter = Substitute.For<IFilter>();
             Filter imageFilter = new Filter();
 
             String path = System.AppDomain.CurrentDomain.BaseDirectory.ToString().Replace("bin\\Debug", "Resources/swissBlackW.png").Replace("\\", "/");
 
             Bitmap exeptedImage = new Bitmap(path);
-
-            filter.BlackWhite(basePicture).Returns(exeptedImage);
-
-            Assert.AreEqual(filter.BlackWhite(basePicture), exeptedImage);
 
             Bitmap result = imageFilter.BlackWhite(basePicture);
 
@@ -39,21 +34,37 @@ namespace UnitTest
         [TestMethod]
         public void TestNightFilter()
         {
-            var filter = Substitute.For<IFilter>();
             Filter imageFilter = new Filter();
 
             String path = System.AppDomain.CurrentDomain.BaseDirectory.ToString().Replace("bin\\Debug", "Resources/swissNight.png").Replace("\\", "/");
 
             Bitmap exeptedImage = new Bitmap(path);
 
-            filter.ApplyFilter(basePicture, 1, 1, 1, 25).Returns(exeptedImage);
-
-            Assert.AreEqual(filter.ApplyFilter(basePicture, 1, 1, 1, 25), exeptedImage);
-
             Bitmap result = imageFilter.ApplyFilter(basePicture, 1, 1, 1, 25);
 
             ImageComparaison.AreEqual(result, exeptedImage);
         }
+
+        [TestMethod]
+        public void TestBlackAndWhiteFilterNull()
+        {
+            Filter imageFilter = new Filter();
+
+            Bitmap bitmamNull = null;
+            Bitmap result = imageFilter.BlackWhite(bitmamNull);
+            Assert.AreEqual(result, null);
+        }
+
+        [TestMethod]
+        public void TestNightFilterNull()
+        {
+            Filter imageFilter = new Filter();
+
+            Bitmap bitmamNull = null;
+            Bitmap result = imageFilter.ApplyFilter(bitmamNull, 1, 1, 1, 25);
+            Assert.AreEqual(result, null);
+        }
+
 
         [TestMethod]
         public void TestNull()
@@ -64,14 +75,13 @@ namespace UnitTest
 
             Bitmap bitmap = null;
 
-            
-            filter
-                .When(x => x.BlackWhite(bitmap))
-                .Do(x => { throw new Exception("Null bitmap"); });
+            //When we call the GetFilterName() method, we force to throw an exception 
+            filter.When(x => x.BlackWhite(null)).Do(x => { throw new NullReferenceException("Image is null"); });
 
             bitmap = imageFilter.BlackWhite(bitmap);
 
             Assert.AreEqual(bitmap, null);
         }
+
     }
 }

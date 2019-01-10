@@ -20,16 +20,11 @@ namespace UnitTest
         [TestMethod]
         public void TestKirschEdge()
         {
-            var edge = Substitute.For<IEdge>();
             Edge imageEdge = new Edge();
 
             String path = System.AppDomain.CurrentDomain.BaseDirectory.ToString().Replace("bin\\Debug", "Resources/swissKirsch.png").Replace("\\", "/");
 
             Bitmap exeptedImage = new Bitmap(path);
-
-            edge.KirschFilter(basePicture).Returns(exeptedImage);
-
-            Assert.AreEqual(edge.KirschFilter(basePicture), exeptedImage);
 
             Bitmap result = imageEdge.KirschFilter(basePicture);
 
@@ -38,22 +33,59 @@ namespace UnitTest
 
 
         [TestMethod]
-        public void TestNightFilter()
+        public void TestPrewittFilter()
         {
-            var edge = Substitute.For<IEdge>();
             Edge imageEdge = new Edge();
 
             String path = System.AppDomain.CurrentDomain.BaseDirectory.ToString().Replace("bin\\Debug", "Resources/swissPrewitt.png").Replace("\\", "/");
 
             Bitmap exeptedImage = new Bitmap(path);
 
-            edge.PrewittFilter(basePicture).Returns(exeptedImage);
-
-            Assert.AreEqual(edge.PrewittFilter(basePicture), exeptedImage);
-
             Bitmap result = imageEdge.PrewittFilter(basePicture);
 
             ImageComparaison.AreEqual(result, exeptedImage);
+        }
+
+        [TestMethod]
+        public void TestCopyToSquare()
+        {
+            Edge imageEdge = new Edge();
+
+            Bitmap result = imageEdge.CopyToSquareCanvas(basePicture, 200);
+
+            Assert.AreEqual(result.Width, 200);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestPrewittFilterNull()
+        {
+            Edge imageEdge = new Edge();
+
+            Bitmap bitmamNull = null;
+            Bitmap result = imageEdge.PrewittFilter(bitmamNull);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestKirschEdgeNull()
+        {
+            Edge imageEdge = new Edge();
+
+            Bitmap bitmamNull = null;
+            Bitmap result = imageEdge.PrewittFilter(bitmamNull);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestExeption()
+        {
+
+            var filterEdge = Substitute.For<IEdge>();
+            //generate the exception 
+            filterEdge.When(x => x.PrewittFilter(null)).Do(x => { throw new NullReferenceException("Image is null"); });
+
+            filterEdge.PrewittFilter(null);
         }
     }
 }
