@@ -1,20 +1,14 @@
 ﻿using FilterEdgeDetection.BLL;
 using FilterEdgeDetection.IOfile;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FilterEdgeDetection
 {
     public partial class WinForm : Form
     {
+        //Declaration of the bitmap we need 
         private Bitmap originalBitmap = null;
         private Bitmap previewBitmap = null;
         private Bitmap resultBitmap = null;
@@ -22,6 +16,8 @@ namespace FilterEdgeDetection
         private Bitmap filterResult = null;
         private Bitmap edgeResult = null;
 
+        
+        //Call interfaces needed
         private IPictureIO pictureIO;
         private  IFilter pictureManipulation;
         private IEdge edge;
@@ -29,6 +25,8 @@ namespace FilterEdgeDetection
 
         public WinForm(IPictureIO pictureIO, IFilter pictureManipulation, IEdge edge)
         {
+
+            //Instenciate interfaces
             this.pictureIO = pictureIO;
             this.pictureManipulation = pictureManipulation;
             this.edge = edge;
@@ -39,15 +37,15 @@ namespace FilterEdgeDetection
         public WinForm()
         {
             InitializeComponent();
+            //The combobox start to the index 0 = "none"
             cmbFilters.SelectedIndex = 0;
             cmbEdge.SelectedIndex = 0;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            //Voir si nécessaire ce bout de code : car sinon pas de path
-            //ApplyFilter(false);
             
+            //Call classes needed
             this.pictureIO = new PictureIO();
             this.edge = new Edge();
 
@@ -61,20 +59,20 @@ namespace FilterEdgeDetection
             //Put the picture in the picture box
             pictureBox1.Image = previewBitmap;
 
-            ApplyFilter(true) ;
+            ApplyFilter() ;
            
         }
 
-
-        private void ApplyFilter(bool preview)
+        //Method to apply the filter
+        private void ApplyFilter()
         {
-            if (previewBitmap == null ||  cmbFilters.SelectedIndex == -1 || cmbEdge.SelectedIndex == -1)
+            //Nécaissaire ?
+            if (previewBitmap == null ||  cmbEdge.SelectedIndex == -1)
             {
                 return;
             }
 
             this.pictureManipulation = new Filter();
-            this.edge = new Edge();
 
             switch (cmbFilters.SelectedItem.ToString())
             {
@@ -94,11 +92,28 @@ namespace FilterEdgeDetection
                     break;
             }
 
-            ApplyEdge(true);
+            //Call the method to apply the edge
+            ApplyEdge();
            
+         
+            
+        }
+
+        //Method to apply the edge
+        private void ApplyEdge()
+        {
+            
+            if (filterResult == null || cmbEdge.SelectedIndex == -1)
+            {
+                return;
+            }
+            
+            this.edge = new Edge();
+
+          
+
             switch (cmbEdge.SelectedItem.ToString())
             {
-                
 
                 case "Prewitt":
                     edgeResult = edge.PrewittFilter(filterResult);
@@ -108,46 +123,6 @@ namespace FilterEdgeDetection
                     edgeResult = edge.KirschFilter(filterResult);
                     break;
 
-                    //The default is "None" because there is not risk that one day we remove the "none"
-                default:
-                    //When the user click on "none" we come back to the filter results beacause we can't have an edge without a filter
-                    edgeResult = filterResult;
-                     break;
-            }
-
-
-            if (edgeResult != null)
-            {
-                pictureBox1.Image = edgeResult;
-                resultBitmap = edgeResult;
-            }
-            
-        }
-
-        private void ApplyEdge(bool preview)
-        {
-            if (previewBitmap == null || cmbFilters.SelectedIndex == -1 || cmbEdge.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            this.pictureManipulation = new Filter();
-            this.edge = new Edge();
-
-          
-
-            switch (cmbEdge.SelectedItem.ToString())
-            {
-
-
-                case "Prewitt":
-                    edgeResult = edge.PrewittFilter(filterResult, false);
-                    break;
-
-                case "Kirsch":
-                    edgeResult = edge.KirschFilter(filterResult, false);
-                    break;
-
                 //The default is "None" because there is not risk that one day we remove the "none"
                 default:
                     //When the user click on "none" we come back to the filter results beacause we can't have an edge without a filter
@@ -155,7 +130,7 @@ namespace FilterEdgeDetection
                     break;
             }
 
-
+            //Put the picture with the edge in the picturebox
             if (edgeResult != null)
             {
                 pictureBox1.Image = edgeResult;
@@ -192,13 +167,13 @@ namespace FilterEdgeDetection
                 this.cmbEdge.Enabled = true;
             }
 
-            ApplyFilter(true);
+            ApplyFilter();
 
         }
 
         private void edgeListener(object sender, EventArgs e)
         {
-            ApplyFilter(true);
+            ApplyFilter();
         }
     }
 }

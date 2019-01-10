@@ -12,6 +12,7 @@ namespace FilterEdgeDetection.BLL
 {
     public class Edge : IEdge
     {
+        //Method for the size of the picture match in the picture box
         public Bitmap CopyToSquareCanvas(Bitmap sourceBitmap, int canvasWidthLenght)
         {
             float ratio = 1.0f;
@@ -42,6 +43,7 @@ namespace FilterEdgeDetection.BLL
             return bitmapResult;
         }
 
+        //Method for the prewitt edge
         public Bitmap PrewittFilter( Bitmap sourceBitmap)
         {
             Bitmap resultBitmap = ConvolutionFilter(sourceBitmap,
@@ -52,8 +54,8 @@ namespace FilterEdgeDetection.BLL
             return resultBitmap;
         }
 
-
-        public  Bitmap KirschFilter( Bitmap sourceBitmap)
+        //Method for the Kirsch edge
+        public Bitmap KirschFilter( Bitmap sourceBitmap)
         {
             Bitmap resultBitmap = ConvolutionFilter(sourceBitmap,
                                                 Matrix.Kirsch3x3Horizontal,
