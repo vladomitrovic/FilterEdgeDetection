@@ -59,6 +59,7 @@ namespace FilterEdgeDetection
             //Put the picture in the picture box
             pictureBox1.Image = previewBitmap;
 
+            
             ApplyFilter() ;
            
         }
@@ -66,7 +67,7 @@ namespace FilterEdgeDetection
         //Method to apply the filter
         private void ApplyFilter()
         {
-            //Nécaissaire ?
+           
             if (previewBitmap == null ||  cmbEdge.SelectedIndex == -1)
             {
                 return;
@@ -136,7 +137,7 @@ namespace FilterEdgeDetection
                 pictureBox1.Image = edgeResult;
                 resultBitmap = edgeResult;
             }
-
+            
         }
 
 
